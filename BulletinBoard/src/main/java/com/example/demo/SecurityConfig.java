@@ -32,7 +32,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 				.passwordParameter("password")
 			.and()
 				.logout()
-				.logoutSuccessUrl("/loginForm");
+				.logoutSuccessUrl("/loginForm")
+			.and()
+				.csrf().disable();
 	}
 
 	@Bean

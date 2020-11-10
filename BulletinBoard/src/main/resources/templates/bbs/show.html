@@ -1,0 +1,49 @@
+
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+table {
+  border-collapse: collapse;
+}
+.col_title {width:200px;}
+.col_data {width:400px;}
+form {display: inline;}
+</style>
+</head>
+<body>
+<h1>新規掲示板作成</h1>
+
+	<table border="1" th:object="${formModel}">
+	  <tr>
+	      <th class="col_title">タイトル</th>
+	      <td class="col_data">
+	        <p th:text="${data.title}"/>
+	      </td>
+	  </tr>
+	  <tr>
+	      <th>内容</th>
+	      <td>
+	        <p th:text="${data.content}"/>
+	      </td>
+	  </tr>
+	  <tr>
+	      <th>作成日</th>
+	      <td>
+	        <p th:text="${data.createDate}"/>
+	      </td>
+	  </tr>
+	  <tr>
+	      <th>作成者</th>
+	      <td>
+	        <p th:text="${data.createUser}"/>
+	      </td>
+	  </tr>
+	</table>
+	<hr>
+<form action="/">
+    <input type="submit" value="戻　る" />
+</form>
+</body>
+</html>

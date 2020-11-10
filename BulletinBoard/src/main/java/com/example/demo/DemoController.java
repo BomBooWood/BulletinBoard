@@ -11,7 +11,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
@@ -33,22 +35,57 @@ public class DemoController {
 	}
 
 	/* 新規画面への遷移 */
+	@GetMapping("/add")
+	ModelAndView add() {
+		ModelAndView mav = new ModelAndView();
+		BulletinBoard bbs = new BulletinBoard();
+		mav.addObject("formModel", bbs);
+		mav.setViewName("bbs/new");
+		return mav;
+	}
 
 	/* 編集画面への遷移 */
+	@GetMapping("/edit")
+	ModelAndView edit(@RequestParam(name = "id") int id) {
+		ModelAndView mav = new ModelAndView();
+		BulletinBoard bbs = bbsrepos.findById(id);
+		mav.addObject("formModel", bbs);
+		mav.setViewName("bbs/new");
+		return mav;
+	}
 
 	/* 詳細画面への遷移 */
+	@GetMapping("/bbs/show/{id}")
+	ModelAndView show(@PathVariable("id") int id) {
+		ModelAndView mav = new ModelAndView();
+		BulletinBoard bbs = bbsrepos.findById(id);
+		mav.addObject("data", bbs);
+		mav.setViewName("bbs/show");
+		return mav;
+	}
 
 	/* 更新処理 */
 	@PostMapping("/create")
 	@Transactional(readOnly = false)
-	public ModelAndView save(@ModelAttribute("bbs") BulletinBoard bbs) {
+	public ModelAndView save(@ModelAttribute("formModel") BulletinBoard bbs) {
 		bbs.setCreateDate(DateToString(new Date()));
 		bbsrepos.saveAndFlush(bbs);
-		return new ModelAndView("redirect:users/list");
+		/**
+		 * Todo. 作成者の設定（ログインユーザーを自動入力すること）
+		 */
+		return new ModelAndView("redirect:/");
+	}
+
+	/* 削除処理 */
+	@PostMapping("/delete")
+	@Transactional(readOnly = false)
+	public ModelAndView delete(@RequestParam(name = "id") int id) {
+		bbsrepos.deleteById(id);
+		return new ModelAndView("redirect:/");
 	}
 
 	/* 初期データ作成 */
-	// todo 初期データ作成クラスを作れないか？
+	// Todo. 初期データ作成クラスを作れないか？
 	@PostConstruct
 	public void init() {
 		User user1 = new User();
