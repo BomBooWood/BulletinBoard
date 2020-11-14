@@ -12,15 +12,15 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Entity
-@Table(name = "user")
 @Getter
 @Setter
-public class User {
+@Table(name = "division")
+public class Division {
 	@Id
-	@Column(name = "user_id")
-	private String username;
+	@Column(name = "division_id", nullable = false)
+	private int divisionId;
 	@Column
-	private String encodedPassword;
+	private String name;
 
 	@OneToMany(mappedBy = "division")
 	private List<BulletinBoard> bbs;

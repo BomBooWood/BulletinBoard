@@ -10,26 +10,47 @@ table {
 .col_title {width:200px;}
 .col_data {width:400px;}
 form {display: inline;}
+.err {color: red;}
 </style>
 </head>
 <body>
 <h1>新規掲示板作成</h1>
 <form method="post" action="/create" th:object="${formModel}">
 	<input type="hidden" name="id" th:value="*{id}">
+	<input type="hidden" name="createUser" th:value="*{createUser.getUsername()}">
 	<table border="1">
 	  <tr>
 	      <th class="col_title">タイトル</th>
 	      <td class="col_data">
-	        <input type="text" name="title" th:value="*{title}" size="20"
-	          maxlength= "20" />
+	        <input type="text" name="title" th:value="*{title}" size="40"
+	          maxlength= "40" />
+	          <div th:if="${#fields.hasErrors('title')}" 
+              th:errors="*{title}" th:errorclass="err" ></div>
 	      </td>
 	  </tr>
 	  <tr>
 	      <th>内容</th>
 	      <td>
-	        <input type="text" name="content" th:value="*{content}" size="40"
-	          maxlength="40" />
+	        <textarea name="content" th:utext="*{content}" rows="10" cols="60" ></textarea>
+	          <div th:if="${#fields.hasErrors('content')}" 
+             th:errors="*{content}" th:errorclass="err" ></div>
 	      </td>
+	  </tr>
+	  <tr>
+	  	<td>分類</td>
+  		<td>
+  			<select id="division" name="division" th:field="*{division}">
+  				<option value="0"></option>
+  				<option th:each="list: ${lists}" th:value="${list.divisionId}"
+  						th:text="${list.name}">pulldown
+  				</option>
+  			</select>
+  		</td>
+	  </tr>
+	  <tr>
+	  	<td>作成者</td>
+	  		<td th:unless="*{createUser}"></td>
+	  		<td th:if="*{createUser}"><p th:text="*{createUser.getUsername()}">createUser</p></td>
 	  </tr>
 	</table>
 	<hr>

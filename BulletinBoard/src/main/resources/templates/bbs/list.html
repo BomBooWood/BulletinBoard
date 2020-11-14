@@ -21,6 +21,7 @@ table {
         <th class="col_title">タイトル</th>
         <th class="col_content">内容</th>
         <th class="col_createuser">作成者</th>
+        <th class="col_createuser">分類</th>
         <th></th>
         <th></th>
     </tr>
@@ -31,7 +32,9 @@ table {
         	   th:href="@{'/bbs/show/' + ${obj.id}}"></a>
         </td>
         <td th:text="${obj.content}"></td>
-        <td th:text="${obj.createUser}"></td>
+        <td th:if="${obj.createUser}" th:text="${obj.createUser.getUsername()}"></td>
+        <td th:unless="${obj.createUser}"></td>
+        <td th:text="${obj.division.getName()}"></td>
         <td>
             <form action="/edit" method="get">
                 <input type="submit" value="編集">
