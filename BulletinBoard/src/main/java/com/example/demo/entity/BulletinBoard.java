@@ -1,4 +1,4 @@
-package com.example.demo;
+package com.example.demo.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -27,7 +27,6 @@ public class BulletinBoard {
 
 	/* 作成日 */
 	@Column(nullable = false)
-	@NotEmpty
 	private String createDate;
 
 	/* タイトル */

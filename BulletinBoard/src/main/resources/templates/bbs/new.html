@@ -17,7 +17,7 @@ form {display: inline;}
 <h1>新規掲示板作成</h1>
 <form method="post" action="/create" th:object="${formModel}">
 	<input type="hidden" name="id" th:value="*{id}">
-	<input type="hidden" name="createUser" th:value="*{createUser.getUsername()}">
+	<input type="hidden" name="createUser" th:if="*{createUser}" th:value="*{createUser.getUsername()}">
 	<table border="1">
 	  <tr>
 	      <th class="col_title">タイトル</th>

@@ -1,4 +1,4 @@
-package com.example.demo;
+package com.example.demo.entity;
 
 import java.util.List;
 
@@ -12,15 +12,16 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Entity
+@Table(name = "user")
 @Getter
 @Setter
-@Table(name = "division")
-public class Division {
+public class User {
 	@Id
-	@Column(name = "division_id", nullable = false)
-	private int divisionId;
-	@Column
-	private String name;
+	@Column(name = "user_id")
+	private String username;
+
+	@Column(length = 64)
+	private String encodedPassword;
 
 	@OneToMany(mappedBy = "division")
 	private List<BulletinBoard> bbs;
