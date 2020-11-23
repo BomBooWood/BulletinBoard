@@ -9,5 +9,7 @@ public class MemberRegistrationForm {
 
 	private String userName;
 	private String password;
+	private String passwordRe;
+	private String mailAddress;
 
 }

@@ -28,7 +28,7 @@ public class DbUserDetailsService implements UserDetailsService {
 
 		// not user found ここ
 		User u = u_repos.findByUsername(username);
-		Account account = new Account(u.getUsername(), u.getEncodedPassword());
+		Account account = new Account(u.getUsername(), u.getEncodedPassword(), u.isActivate());
 
 		return new DbUserDetails(account, getAuthorities(account));
 	}

@@ -23,6 +23,15 @@ public class User {
 	@Column(length = 64)
 	private String encodedPassword;
 
+	@Column
+	private String uuid;
+
+	@Column
+	private String mailAddress;
+
+	@Column
+	private boolean activate;
+
 	@OneToMany(mappedBy = "division")
 	private List<BulletinBoard> bbs;
 

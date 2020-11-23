@@ -29,4 +29,5 @@ public class RegisterMemberService {
 
 		u_repos.save(user);
 	}
+
 }

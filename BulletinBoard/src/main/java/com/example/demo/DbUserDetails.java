@@ -14,7 +14,7 @@ public class DbUserDetails extends User {
 	 */
 	public DbUserDetails(Account account, Collection<GrantedAuthority> authorities) {
 
-		super(account.getName(), account.getPassword(), true, true, true, true, authorities);
+		super(account.getName(), account.getPassword(), account.getActivate(), true, true, true, authorities);
 
 		this.account = account;
 

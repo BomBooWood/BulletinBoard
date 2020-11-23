@@ -90,12 +90,12 @@ public class DemoController {
 			ModelAndView mav = new ModelAndView();
 			mav.addObject("lists", d_repos.findAll());
 			mav.setViewName("bbs/new");
-			System.out.println(result);
 			return mav;
 		}
-		bbsrepos.saveAndFlush(bbs);/**
-									 * Todo. 作成者の設定（ログインユーザーを自動入力すること）
-									 */
+		bbsrepos.saveAndFlush(bbs);
+		/**
+		 * Todo. 作成者の設定（ログインユーザーを自動入力すること）
+		 */
 
 		return new ModelAndView("redirect:/");
 	}

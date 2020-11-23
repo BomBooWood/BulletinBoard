@@ -57,6 +57,7 @@ public class InputData {
 		User user1 = new User();
 		user1.setUsername("demo");
 		user1.setEncodedPassword(passwordEncoder.encode("demo"));
+		user1.setActivate(true);
 		u_repos.saveAndFlush(user1);
 
 		// 掲示板テーブル初期データ

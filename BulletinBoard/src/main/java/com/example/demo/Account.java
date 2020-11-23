@@ -6,9 +6,12 @@ public class Account {
 
 	private String password;
 
-	public Account(String name, String password) {
+	private boolean activate;
+
+	public Account(String name, String password, boolean activate) {
 		this.name = name;
 		this.password = password;
+		this.activate = activate;
 	}
 
 	public String getName() {
@@ -25,6 +28,14 @@ public class Account {
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+
+	public boolean getActivate() {
+		return activate;
+	}
+
+	public void setActivate(boolean activate) {
+		this.activate = activate;
 	}
 
 }

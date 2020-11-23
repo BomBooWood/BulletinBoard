@@ -20,15 +20,17 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
+
 		// ログインページを指定
 		// ログインページへのアクセスは全員許可する
 		http.formLogin().loginPage("/login").loginProcessingUrl("/authenticate").usernameParameter("username")
 				.passwordParameter("encodedPassword").defaultSuccessUrl("/").permitAll();
 
-		// 全てのリクエストに対して認証をかける
-		// 会員登録機能実装時に追加
+		// 有効化ページへのアクセスを全員に許可する
 		http.csrf().disable().authorizeRequests().antMatchers("/RegistrationForm").permitAll().antMatchers("/Register")
-				.permitAll().antMatchers("/Result").permitAll().anyRequest().authenticated();
+				.permitAll().antMatchers("/Result").permitAll().antMatchers("/validate*").permitAll().anyRequest()
+				.authenticated();
+
 	}
 
 	@Bean

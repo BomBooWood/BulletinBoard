@@ -6,6 +6,12 @@
 <title>ログイン</title>
 </head>
 <body>
+
+<!-- 有効化メールが届いた際に表示する内容 -->
+<div th:if="${isRegisterd == 'true'}">
+	<p>アカウントが有効になりました。</p>
+</div>
+
 <form action="/authenticate" method="POST">
 
     <table align="center">
